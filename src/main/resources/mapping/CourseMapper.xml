@@ -12,5 +12,8 @@
     <select id="getSelectedCourseByClassNo" resultType="Integer">
         SELECT course_id FROM `course_selected` where class_no = 10 order by course_id;
     </select>
-
+    <!--    查询班级所选课程名字-->
+    <select id="getCourseNameByClassNo" resultType="String">
+    SELECT c.course_name FROM course_selected s,course c where class_no = #{classNo} and s.course_id = c.course_id;
+    </select>
 </mapper>

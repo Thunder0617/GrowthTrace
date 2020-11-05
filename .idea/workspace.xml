@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2b9aee7-6bbc-47ed-8599-54628a8fe04a" name="Default Changelist" comment="" />
+    <list default="true" id="c2b9aee7-6bbc-47ed-8599-54628a8fe04a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/config/WebMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/ClassController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/ClassController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/mapper/ICourseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/mapper/ICourseMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/ICourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/ICourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/impl/ICourseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/impl/ICourseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/CourseMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/CourseMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/GrowthTrace.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/config/WebMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/config/WebMvcConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/controller/ClassController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/controller/ClassController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/controller/CourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/controller/CourseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/mapper/ICourseMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/mapper/ICourseMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/service/ICourseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/service/ICourseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/service/impl/ICourseServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/service/impl/ICourseServiceImpl.class" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +96,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.Application (1)">
+  <component name="RunManager" selected="Spring Boot.Application">
     <configuration name="ITeacherServiceImpl.getTeacherListForPage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="GrowthTrace_sys" />
       <extension name="coverage">
@@ -259,8 +275,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.Application (1)" />
         <item itemvalue="Spring Boot.Application" />
+        <item itemvalue="Spring Boot.Application (1)" />
         <item itemvalue="JUnit.Test.getTeacherList" />
         <item itemvalue="JUnit.Test.getTeacherListForPage" />
         <item itemvalue="JUnit.ITeacherServiceImpl.getTeacherListForPage" />
@@ -290,7 +306,8 @@
       <workItem from="1604539722028" duration="1450000" />
       <workItem from="1604541188917" duration="1992000" />
       <workItem from="1604543848421" duration="472000" />
-      <workItem from="1604544349464" duration="443000" />
+      <workItem from="1604544349464" duration="3243000" />
+      <workItem from="1604555220162" duration="6616000" />
     </task>
     <task id="LOCAL-00001" summary="delete EmpController">
       <created>1604452423818</created>
@@ -334,7 +351,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604544143892</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="11/5 10.20">
+      <created>1604544800440</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1604544800440</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

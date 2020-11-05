@@ -1,7 +1,6 @@
 package com.jxd.mybatisPlus.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.jxd.mybatisPlus.mapper.IClassMapper;
 import com.jxd.mybatisPlus.model.Class;
 import com.jxd.mybatisPlus.model.Course;
 import com.jxd.mybatisPlus.model.SelectedCourse;
@@ -41,7 +40,7 @@ public class ClassController {
     //获取班级列表1231321321321321321322
     @RequestMapping("getClassList")
     @ResponseBody
-        public List<Integer> getClassList(){
+    public List<Integer> getClassList(){
         List<Integer> list=new ArrayList<>();
         QueryWrapper<Class> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByAsc("class_no");
@@ -56,7 +55,7 @@ public class ClassController {
     @RequestMapping("/addClass/{id}/{teacherId}/{course}")
     @ResponseBody
     public int AddClassAndSelectCourse(Class c
-                                        ,@PathVariable(value = "course") String[] course){
+            ,@PathVariable(value = "course") String[] course){
         int flag = 0;
         List<Integer> courseId = new ArrayList<>();
         //获取课程列表
@@ -71,6 +70,53 @@ public class ClassController {
         }
         //添加选课
         if(iClassService.save(c)){
+            for (Integer cId:courseId) {
+                SelectedCourse selectedCourse = new SelectedCourse(cId,c.getId());
+                iSelectedCourseService.save(selectedCourse);
+            }
+            flag = 1;
+        }
+        return flag;
+    }
+
+    /**
+     *@Author: zhaowentao
+     *@Description:通过班级号获取教师id
+     *@Date: 15:59 2020/11/5
+     **/
+    @RequestMapping("/getTeacherIdByClassNo/{classNo}")
+    @ResponseBody
+    public int getTeacherIdByClassNo(@PathVariable int classNo){
+        Class c =  iClassService.getById(classNo);
+        return c.getTeacherId();
+    }
+
+    /**
+     *@Author: zhaowentao
+     *@Description:班级修改
+     *@Date: 16:34 2020/11/5
+     **/
+    @RequestMapping("updateClass/{id}/{teacherId}/{course}")
+    @ResponseBody
+    public int UpdateClassAndSelectCourse(Class c
+            ,@PathVariable(value = "course") String[] course){
+        int flag = 0;
+        List<Integer> courseId = new ArrayList<>();
+        //获取课程列表
+        List<Course> list = iCourseService.list();
+        for (String course2:course) {
+            for (Course course1:list) {
+                if(course1.getcName().equals(course2)){
+                    courseId.add(course1.getId());
+                    break;
+                }
+            }
+        }
+        //添加选课
+        if(iClassService.updateById(c)){
+            QueryWrapper<SelectedCourse> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("class_no",c.getId());
+            iSelectedCourseService.remove(queryWrapper);
             for (Integer cId:courseId) {
                 SelectedCourse selectedCourse = new SelectedCourse(cId,c.getId());
                 iSelectedCourseService.save(selectedCourse);

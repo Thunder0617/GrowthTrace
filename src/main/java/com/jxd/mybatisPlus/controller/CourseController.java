@@ -23,7 +23,7 @@ import java.util.Map;
  * @modified By：
  * @version: 1.0
  */
-//@CrossOrigin
+
 @Controller
 public class CourseController {
     @Autowired
@@ -73,6 +73,18 @@ public class CourseController {
             mapList.add(map);
         }
         return mapList;
+    }
+
+    /**
+     *@Author: zhaowentao
+     *@Description:获取班级所选课程
+     *@Date: 16:09 2020/11/5
+     **/
+    @RequestMapping("/getSelectCourseByClassNo/{classNo}")
+    @ResponseBody
+    public List<String> getSelectCourseListByClassNo(@PathVariable int classNo){
+        List<String> list= iCourseService.getCourseNameByClassNo(classNo);
+        return list;
     }
 
 }

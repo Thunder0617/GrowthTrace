@@ -18,4 +18,5 @@ import java.util.Map;
 public interface ICourseMapper extends BaseMapper<Course> {
     public List<Map<String,Object>> getCourseByClass(int classNo);
     public List<Integer> getSelectedCourseByClassNo(int classNo);
+    public List<String> getCourseNameByClassNo(int classNo);
 }

@@ -15,4 +15,5 @@ import java.util.Map;
  */
 public interface ICourseService extends IService<Course> {
     public List<Map<String,Object>> getCourseByClass(int classNo);
+    public List<String> getCourseNameByClassNo(int classNo);
 }

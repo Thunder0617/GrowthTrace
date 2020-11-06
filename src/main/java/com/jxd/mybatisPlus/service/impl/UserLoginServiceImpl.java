@@ -30,4 +30,5 @@ public class UserLoginServiceImpl extends ServiceImpl<IUserLoginMapper, UserLogi
     public List<Map<String,Object>> getAllUserByLike(String name, int role){
         return iUserLoginMapper.getAllUserByLike(name,role);
     }
+
 }

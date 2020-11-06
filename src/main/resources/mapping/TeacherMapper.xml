@@ -5,12 +5,55 @@
 <!--当mapper接口和mapper.xml文件关联的时候，命名空间namespace的值就需要配置成接口的全限定名称
 将来我们通过mapper接口的方法名来调用Sql语句-->
 <mapper namespace="com.jxd.mybatisPlus.mapper.ITeacherMapper">
-    <sql id="baseSql">
-        select * from teacher
+<!--    <sql id="baseSql">-->
+<!--        select * from teacher-->
+<!--    </sql>-->
+<!--    <select id="getAllTeacher2" resultType="map">-->
+<!--    <include refid="baseSql"/>-->
+<!--        where flag_deleted = 0 limit #{startIndex},#{pageSize}-->
+<!--    </select>-->
+<!--**************-->
+    <sql id="BaseSql">
+      select * from teacher
     </sql>
+    <select id="getAllTeacherByPage" resultType="map">
+        <include refid="BaseSql"></include>
+        <where>
+            flag_deleted!=1
+            <if test="tname!='all'">
+                and  teacher_name like concat('%',#{tname},'%')
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getAllTeacherByLike" resultType="map">
+        <include refid="BaseSql"></include>
+        <where>
+            flag_deleted!=1
+            <if test="tname!='all'">
+                and  teacher_name like concat('%',#{tname},'%')
+            </if>
+        </where>
+    </select>
+    <!--修改教师信息-->
+    <update id="updateTeacherById">
+        update teacher set teacher_name=#{tName} where teacher_id=#{id}
+    </update>
+    <!--假删教师-->
+    <update id="deleteTeacherById">
+        update teacher set flag_deleted=1 where teacher_id=#{id}
+    </update>
+    <!--获取新增的教师信息-->
+    <select id="getTheLastTeacher" resultMap="setTeacher">
+       select * from teacher where teacher_id=(select max(t.teacher_id)from teacher t)
+    </select>
+    <resultMap id="setTeacher" type="Teacher">
+        <id column="teacher_id" property="id"></id>
+        <result column="teacher_name" property="tName"></result>
+    </resultMap>
+
     <select id="getAllTeacher2" resultType="map">
-    <include refid="baseSql"/>
+        <include refid="BaseSql"/>
         where flag_deleted = 0 limit #{startIndex},#{pageSize}
     </select>
-
 </mapper>

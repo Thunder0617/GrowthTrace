@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     <!--当mapper接口和mapper.xml文件关联的时候，命名空间namespace的值就需要配置成
+     接口的全限定名称，将来我们通过mapper接口的方法名来调用sql语句-->
+<mapper namespace="com.jxd.mybatisPlus.mapper.IDeptMapper">
+    <sql id="BaseSql">
+      select * from dept
+    </sql>
+    <select id="getAllDeptByPage" resultType="map">
+        <include refid="BaseSql"></include>
+        <where>
+        flag_deleted!=1
+            <if test="dname!='all'">
+             and   dept_name like concat('%',#{dname},'%')
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getAllDeptByLike" resultType="map">
+        <include refid="BaseSql"></include>
+        <where>
+        flag_deleted!=1
+            <if test="dname!='all'">
+              and  dept_name like concat('%',#{dname},'%')
+            </if>
+        </where>
+    </select>
+    <!--修改部门-->
+    <update id="updateDeptById">
+        update dept set dept_name=#{dName} where dept_no=#{id}
+    </update>
+    <!--假删部门-->
+    <update id="deleteDeptById">
+        update dept set flag_deleted=1 where dept_no=#{id}
+    </update>
+    <select id="getAllDepts" resultType="String">
+        select dept_name from dept
+    </select>
+</mapper>

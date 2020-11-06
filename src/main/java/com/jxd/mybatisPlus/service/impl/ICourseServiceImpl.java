@@ -31,4 +31,22 @@ public class ICourseServiceImpl extends ServiceImpl<ICourseMapper, Course> imple
     public List<String> getCourseNameByClassNo(int classNo) {
         return iCourseMapper.getCourseNameByClassNo(classNo);
     }
+    public List<Map<String, Object>> getAllCourseByPage(Integer startIndex, Integer pageSize, String cname) {
+        return iCourseMapper.getAllCourseByPage(startIndex,pageSize,cname);
+    }
+
+    @Override
+    public List<Map<String, Object>> getAllCourseByLike(String cname) {
+        return iCourseMapper.getAllCourseByLike(cname);
+    }
+
+    @Override
+    public int updateCourseById(Course course) {
+        return iCourseMapper.updateCourseById(course);
+    }
+
+    @Override
+    public int deleteCourseById(Integer id) {
+        return iCourseMapper.deleteCourseById(id);
+    }
 }

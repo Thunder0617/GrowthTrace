@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     <!--当mapper接口和mapper.xml文件关联的时候，命名空间namespace的值就需要配置成
+     接口的全限定名称，将来我们通过mapper接口的方法名来调用sql语句-->
+<mapper namespace="com.jxd.mybatisPlus.mapper.IQualityMapper">
+    <sql id="BaseSql">
+      select * from quality
+    </sql>
+    <select id="getAllQualityByPage" resultType="map">
+        <include refid="BaseSql"></include>
+        <where>
+            flag_deleted!=1
+            <if test="qname!='all'">
+              and  quality_name like concat('%',#{qname},'%')
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getAllQualityByLike" resultType="map">
+        <include refid="BaseSql"></include>
+        <where>
+        flag_deleted!=1
+            <if test="qname!='all'">
+              and  quality_name like concat('%',#{qname},'%')
+            </if>
+        </where>
+    </select>
+    <!--假删-->
+    <update id="deleteQualityById">
+        update quality set flag_deleted=1 where quality_id=#{id}
+    </update>
+</mapper>

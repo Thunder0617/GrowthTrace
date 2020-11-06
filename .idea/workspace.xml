@@ -2,21 +2,58 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2b9aee7-6bbc-47ed-8599-54628a8fe04a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/DeptController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/ManagerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/QualityController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/mapper/IDeptMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/mapper/IManagerMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/mapper/IQualityMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/IDeptService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/IManagerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/IQualityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/impl/DeptServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/impl/ManagerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/impl/QualityServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapping/DeptMapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapping/ManagerMapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapping/QualityMapping.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/config/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/ClassController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/ClassController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller/TeacherController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/mapper/ICourseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/mapper/ICourseMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/mapper/ITeacherMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/mapper/ITeacherMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/model/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/model/Dept.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/model/Dept.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/model/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/model/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/model/Quality.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/model/Quality.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/model/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/model/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/model/UserLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/model/UserLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/ICourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/ICourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/ITeacherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/ITeacherService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/IUserLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/IUserLoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/impl/ICourseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/impl/ICourseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/impl/ITeacherServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/impl/ITeacherServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/impl/UserLoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/service/impl/UserLoginServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/test/Test.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/CourseMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/CourseMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/GrowthTrace.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/config/WebMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/config/WebMvcConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/controller/ClassController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/controller/ClassController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/TeacherMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/TeacherMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/controller/CourseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/controller/CourseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/controller/TeacherController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/controller/TeacherController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/mapper/ICourseMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/mapper/ICourseMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/mapper/ITeacherMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/mapper/ITeacherMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/model/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/model/Course.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/model/Dept.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/model/Dept.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/model/Manager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/model/Manager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/model/Quality.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/model/Quality.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/model/Teacher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/model/Teacher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/model/UserLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/model/UserLogin.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/service/ICourseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/service/ICourseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/service/ITeacherService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/service/ITeacherService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/service/impl/ICourseServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/service/impl/ICourseServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/service/impl/ITeacherServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/service/impl/ITeacherServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jxd/mybatisPlus/test/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapping/CourseMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapping/CourseMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapping/TeacherMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapping/TeacherMapper.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +101,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/jxd/mybatisPlus/controller" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -77,11 +114,11 @@
       <recent name="com.jxd.mybatisPlus" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Users\91245\IdeaProjects\GrowthTrace\src\main\java\com\jxd\mybatisPlus\controller" />
-      <recent name="E:\Users\91245\IdeaProjects\GrowthTrace\src\main\java\com\jxd\mybatisPlus\service" />
-      <recent name="E:\Users\91245\IdeaProjects\GrowthTrace\src\main\java\com\jxd\mybatisPlus\service\impl" />
-      <recent name="E:\Users\91245\IdeaProjects\GrowthTrace\src\main\resources\mapping" />
-      <recent name="E:\Users\91245\IdeaProjects\GrowthTrace\src\main\java\com\jxd\mybatisPlus\mapper" />
+      <recent name="E:\Users\91245\IdeaProjects\GrowthTrace - 副本\src\main\java\com\jxd\mybatisPlus\controller" />
+      <recent name="E:\Users\91245\IdeaProjects\GrowthTrace - 副本\src\main\java\com\jxd\mybatisPlus\service\impl" />
+      <recent name="E:\Users\91245\IdeaProjects\GrowthTrace - 副本\src\main\java\com\jxd\mybatisPlus\service" />
+      <recent name="E:\Users\91245\IdeaProjects\GrowthTrace - 副本\src\main\java\com\jxd\mybatisPlus\mapper" />
+      <recent name="E:\Users\91245\IdeaProjects\GrowthTrace - 副本\src\main\resources\mapping" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -307,7 +344,9 @@
       <workItem from="1604541188917" duration="1992000" />
       <workItem from="1604543848421" duration="472000" />
       <workItem from="1604544349464" duration="3243000" />
-      <workItem from="1604555220162" duration="6616000" />
+      <workItem from="1604555220162" duration="7927000" />
+      <workItem from="1604631963325" duration="1813000" />
+      <workItem from="1604641052587" duration="8950000" />
     </task>
     <task id="LOCAL-00001" summary="delete EmpController">
       <created>1604452423818</created>
@@ -358,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604544800440</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="11/5 17.46">
+      <created>1604569634722</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1604569634722</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,7 +469,8 @@
     <MESSAGE value="11/4 13:41" />
     <MESSAGE value="11/4 16.29" />
     <MESSAGE value="11/5 10.20" />
-    <option name="LAST_COMMIT_MESSAGE" value="11/5 10.20" />
+    <MESSAGE value="11/5 17.46" />
+    <option name="LAST_COMMIT_MESSAGE" value="11/5 17.46" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

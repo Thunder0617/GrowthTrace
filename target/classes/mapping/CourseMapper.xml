@@ -12,5 +12,39 @@
     <select id="getSelectedCourseByClassNo" resultType="Integer">
         SELECT course_id FROM `course_selected` where class_no = 10 order by course_id;
     </select>
+    <!--    查询班级所选课程名字-->
+    <select id="getCourseNameByClassNo" resultType="String">
+    SELECT c.course_name FROM course_selected s,course c where class_no = #{classNo} and s.course_id = c.course_id;
+    </select>
 
+    <sql id="BaseSql">
+      select * from course
+    </sql>
+    <select id="getAllCourseByPage" resultType="map">
+        <include refid="BaseSql"></include>
+        <where>
+            flag_deleted!=1
+            <if test="cname!='all'">
+                and  course_name like concat('%',#{cname},'%')
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getAllCourseByLike" resultType="map">
+        <include refid="BaseSql"></include>
+        <where>
+            flag_deleted!=1
+            <if test="cname!='all'">
+                and  course_name like concat('%',#{cname},'%')
+            </if>
+        </where>
+    </select>
+    <!--修改课程-->
+    <update id="updateCourseById">
+        update course set course_name=#{cName} where course_id=#{id}
+    </update>
+    <!--假删课程-->
+    <update id="deleteCourseById">
+        update course set flag_deleted=1 where course_id=#{id}
+    </update>
 </mapper>

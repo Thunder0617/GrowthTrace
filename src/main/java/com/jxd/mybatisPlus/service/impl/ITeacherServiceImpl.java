@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ：zhaowentao
@@ -26,16 +27,39 @@ public class ITeacherServiceImpl extends ServiceImpl<ITeacherMapper, Teacher> im
     @Autowired
     ITeacherMapper iTeacherMapper;
 
-    public List<Teacher> getTeacherListForPage(int curPage,int pageSize){
-        List<Teacher> list = new ArrayList<>();
-        IPage<Teacher> page = new Page<>(curPage,pageSize);
-        QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("flag_deleted",0);
-        page = iTeacherMapper.selectPage(page,queryWrapper);
-        list = page.getRecords();
-        return list;
+//    public List<Teacher> getTeacherListForPage(int curPage,int pageSize){
+//        List<Teacher> list = new ArrayList<>();
+//        IPage<Teacher> page = new Page<>(curPage,pageSize);
+//        QueryWrapper<Teacher> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.eq("flag_deleted",0);
+//        page = iTeacherMapper.selectPage(page,queryWrapper);
+//        list = page.getRecords();
+//        return list;
+//    }
+//方法2
+    @Override
+    public List<Map<String, Object>> getAllTeacherByPage(Integer startIndex, Integer pageSize, String tname) {
+        return iTeacherMapper.getAllTeacherByPage(startIndex,pageSize,tname);
     }
 
+    @Override
+    public List<Map<String, Object>> getAllTeacherByLike(String tname) {
+        return iTeacherMapper.getAllTeacherByLike(tname);
+    }
 
+    @Override
+    public int updateTeacherById(Teacher teacher) {
+        return iTeacherMapper.updateTeacherById(teacher);
+    }
+
+    @Override
+    public int deleteTeacherById(Integer id) {
+        return iTeacherMapper.deleteTeacherById(id);
+    }
+
+    @Override
+    public Teacher getTheLastTeacher() {
+        return iTeacherMapper.getTheLastTeacher();
+    }
 
 }

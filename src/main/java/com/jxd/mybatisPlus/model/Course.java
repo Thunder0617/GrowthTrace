@@ -1,7 +1,9 @@
 package com.jxd.mybatisPlus.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
  * @ClassName: Course
@@ -11,8 +13,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
  * @Version: V1.0
  **/
 //创建课程类
+@TableName(value = "course")
 public class Course {
-    @TableId(value = "course_id")
+    @TableId(value = "course_id",type = IdType.AUTO)
     private Integer Id;//课程序号
     @TableField(value = "course_name")
     private String cName;//课程名

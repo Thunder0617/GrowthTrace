@@ -86,5 +86,46 @@ public class CourseController {
         List<String> list= iCourseService.getCourseNameByClassNo(classNo);
         return list;
     }
-
+    @RequestMapping("/getAllCourseByPage/{curPage}/{pageSize}/{cname}")
+    @ResponseBody
+    public List<Map<String,Object>> getAllCourseByPage(@PathVariable("curPage") String curPage, @PathVariable("pageSize") String pageSize, @PathVariable("cname") String cname){
+        Integer startIndex = (Integer.parseInt(curPage)-1) * Integer.parseInt(pageSize);
+        List<Map<String,Object>> resultValue = iCourseService.getAllCourseByPage(startIndex,Integer.parseInt(pageSize),cname);
+        return resultValue;
+    }
+    @RequestMapping("/getAllCourseByLike/{cname}")
+    @ResponseBody
+    public List<Map<String,Object>> getAllCourseByLike(@PathVariable("cname")String cname){
+        List<Map<String,Object>> courses = iCourseService.getAllCourseByLike(cname);
+        return courses;
+    }
+    @RequestMapping("/updateCourseById")
+    @ResponseBody
+    public String updateCourseById(@RequestBody Course course){
+        String msg = "修改课程失败！";
+        int num= iCourseService.updateCourseById(course);
+        if(num!=0){
+            msg = "修改课程成功！";
+        }
+        return msg;
+    }
+    @RequestMapping("/addCourse")
+    @ResponseBody
+    public String addCourse(@RequestBody Course course){
+        String msg = "添加课程失败！";
+        if(iCourseService.save(course)){
+            msg = "添加课程成功！";
+        }
+        return msg;
+    }
+    @RequestMapping("/deleteCourseById/{id}")
+    @ResponseBody
+    public String deleteCourseById(@PathVariable("id") String id){
+        String msg = "删除课程失败！";
+        int num=iCourseService.deleteCourseById(Integer.parseInt(id));
+        if(num!=0){
+            msg = "删除课程成功！";
+        }
+        return msg;
+    }
 }

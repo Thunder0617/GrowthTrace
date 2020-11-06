@@ -14,6 +14,10 @@ import java.util.Map;
  * @version: 1.0
  */
 public interface ICourseService extends IService<Course> {
-    public List<Map<String,Object>> getCourseByClass(int classNo);
-    public List<String> getCourseNameByClassNo(int classNo);
+    List<Map<String,Object>> getCourseByClass(int classNo);
+    List<String> getCourseNameByClassNo(int classNo);
+    List<Map<String,Object>> getAllCourseByPage(Integer startIndex, Integer pageSize, String cname);
+    List<Map<String,Object>> getAllCourseByLike(String cname);
+    int updateCourseById(Course course);
+    int deleteCourseById(Integer id);
 }

@@ -17,5 +17,11 @@ import java.util.Map;
  */
 @Repository
 public interface ITeacherMapper extends BaseMapper<Teacher> {
-    List<Map<String,Object>> getAllTeacher2(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
+//    List<Map<String,Object>> getAllTeacher2(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
+//    方法2
+    List<Map<String,Object>> getAllTeacherByPage(@Param("startIndex") Integer startIndex, @Param("pageSize") Integer pageSize, @Param("tname") String tname);
+    List<Map<String,Object>> getAllTeacherByLike(@Param("tname") String tname);
+    int updateTeacherById(Teacher teacher);
+    int deleteTeacherById(Integer id);
+    Teacher getTheLastTeacher();//获取教师表中最新增加的教师
 }

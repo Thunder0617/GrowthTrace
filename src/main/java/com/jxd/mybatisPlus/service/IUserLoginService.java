@@ -17,4 +17,5 @@ public interface IUserLoginService extends IService<UserLogin> {
 //    分页查询
     List<Map<String,Object>> getUserByRole(Integer counts, Integer pageSize, String name, int role);
     List<Map<String,Object>> getAllUserByLike(String name, int role);
+
 }

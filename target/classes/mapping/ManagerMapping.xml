@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     <!--当mapper接口和mapper.xml文件关联的时候，命名空间namespace的值就需要配置成
+     接口的全限定名称，将来我们通过mapper接口的方法名来调用sql语句-->
+<mapper namespace="com.jxd.mybatisPlus.mapper.IManagerMapper">
+    <sql id="BaseSql">
+      select m.*,d.dept_name from manager m,dept d
+    </sql>
+    <select id="getAllManagerByPage" resultType="map">
+        <include refid="BaseSql"></include>
+        <where>
+        m.dept_no=d.dept_no and m.flag_deleted!=1
+        <if test="deptNo!=0">
+         and m.dept_no=#{deptNo}
+        </if>
+            <if test="mname!='all'">
+             and   m.manager_name like concat('%',#{mname},'%')
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getAllManagerByLike" resultType="map">
+        <include refid="BaseSql"></include>
+        <where>
+            m.dept_no=d.dept_no and m.flag_deleted!=1
+            <if test="deptNo!=0">
+                and m.dept_no=#{deptNo}
+            </if>
+            <if test="mname!='all'">
+              and  m.manager_name like concat('%',#{mname},'%')
+            </if>
+        </where>
+    </select>
+    <!--修改部门主管信息-->
+    <update id="updateManagerById">
+        update manager set manager_name=#{mName},dept_no=#{deptId} where manager_id=#{id}
+    </update>
+    <!--假删部门主管-->
+    <update id="deleteManagerById">
+        update manager set flag_deleted=1 where manager_id=#{id}
+    </update>
+<!--    新增完获取当前对象-->
+    <select id="getTheLastManager" resultMap="setManager">
+    select * from manager where manager_id=(select max(m.manager_id) from manager m)
+    </select>
+    <resultMap id="setManager" type="Manager">
+        <id column="manager_id" property="id"></id>
+        <result column="manager_name" property="mName"></result>
+    </resultMap>
+</mapper>

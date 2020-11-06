@@ -28,7 +28,11 @@ public class UserLogin {
         this.pwd = pwd;
     }
 
-
+    public UserLogin(int id, String name, int role) {
+        this.id = id;
+        this.name = name;
+        this.role = role;
+    }
 
     public UserLogin(int id, String name, String pwd, int role) {
         this.id = id;

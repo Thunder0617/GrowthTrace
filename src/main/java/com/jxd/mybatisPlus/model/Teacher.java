@@ -16,49 +16,46 @@ import com.baomidou.mybatisplus.annotation.TableName;
 //创建教师类
 @TableName(value = "teacher")
 public class Teacher {
-    @TableId(value = "teacher_id", type = IdType.AUTO)
-    private Integer Id;//教师序号
+    @TableId(value = "teacher_id",type = IdType.AUTO)
+    private Integer id;//教师序号
     @TableField(value = "teacher_name")
     private String tName;//教师姓名
     @TableField(value = "flag_deleted")
-    private int isDeleted;//是否删除
-
+    private Integer isDeleted;//是否已被删除：是1/否0
     public Teacher() {
     }
-
-    public int getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(int isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-    public Teacher(Integer id, String tName, int isDeleted) {
-        Id = id;
-        this.tName = tName;
-        this.isDeleted = isDeleted;
-    }
-
     public Teacher(Integer id, String tName) {
-        Id = id;
+        this.id = id;
         this.tName = tName;
     }
 
+    public Teacher(Integer id, String tName, Integer isDeleted) {
+        this.id = id;
+        this.tName = tName;
+        this.isDeleted = isDeleted;
+    }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public void settName(String tName) {
         this.tName = tName;
     }
 
+    public void setIsDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public String gettName() {
         return tName;
+    }
+
+    public Integer getIsDeleted() {
+        return isDeleted;
     }
 }

@@ -18,7 +18,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/**").addResourceLocations("file:E:/Users/91245/IdeaProjects/GrowthTrace - 副本/src/main/webapp/upload/");
+        registry.addResourceHandler("/images/**").addResourceLocations("file:E:/Users/91245/IdeaProjects/GrowthTrace/src/main/webapp/upload/");
     }
 
 }

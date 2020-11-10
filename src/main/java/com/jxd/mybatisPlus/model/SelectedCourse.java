@@ -16,7 +16,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
     @TableName("course_selected")
 public class SelectedCourse {
     @TableId(value = "select_id",type = IdType.AUTO)
-    private Integer Id;//已选课程序号
+    private Integer id;//已选课程序号
     @TableField(value = "course_id")
     private Integer courseId;//课程id
     @TableField(value = "class_no")
@@ -31,13 +31,13 @@ public class SelectedCourse {
     }
 
     public SelectedCourse(Integer id, Integer courseId, Integer classid) {
-        Id = id;
+        this.id = id;
         this.courseId = courseId;
         this.classid = classid;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public void setCourseId(Integer courseId) {
@@ -49,7 +49,7 @@ public class SelectedCourse {
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public Integer getCourseId() {

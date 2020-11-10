@@ -20,4 +20,10 @@ public interface ICourseService extends IService<Course> {
     List<Map<String,Object>> getAllCourseByLike(String cname);
     int updateCourseById(Course course);
     int deleteCourseById(Integer id);
+    //    分页获取教授的课程及模糊查询
+    List<Map<String,Object>> getTeachCourse(Integer startIndex, Integer pageSize,Integer classId,String cName);
+    Integer getCountTeachCourse(Integer classId,String cName);
+    List<Map<String,Object>> getLearnCourses(Integer classId);
+    List<Integer> getCourses(Integer classNo);
+
 }

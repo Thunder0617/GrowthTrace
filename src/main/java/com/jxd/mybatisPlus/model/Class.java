@@ -14,20 +14,20 @@ import com.baomidou.mybatisplus.annotation.TableId;
 //创建班级类
 public class Class {
     @TableId(value = "class_no")
-    private Integer Id;//班级序号
+    private Integer id;//班级序号
     @TableField(value = "teacher_id")
     private Integer  teacherId;//教师id
 
     public Class() {
     }
 
-    public Class(Integer id, Integer teacherId) {
-        Id = id;
-        this.teacherId = teacherId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setId(Integer id) {
-        Id = id;
+    public Class(Integer id, Integer teacherId) {
+        this.id = id;
+        this.teacherId = teacherId;
     }
 
     public void setTeacherId(Integer teacherId) {
@@ -35,7 +35,7 @@ public class Class {
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public Integer getTeacherId() {

@@ -1,7 +1,9 @@
 package com.jxd.mybatisPlus.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
  * @ClassName: QualityScore
@@ -10,9 +12,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
  * @Date: 2020/10/30
  * @Version: V1.0
  **/
+@TableName("quality_score")
 public class QualityScore {
-    @TableId(value = "score_id")
-    private Integer Id;//序号
+    @TableId(value = "score_id",type = IdType.AUTO)
+    private Integer id;//序号
     @TableField(value = "quality_id")
     private Integer qualityId;//品质序号
     @TableField(value = "student_id")
@@ -26,7 +29,7 @@ public class QualityScore {
     }
 
     public QualityScore(Integer id, Integer qualityId, Integer studentId, Integer score, Integer year) {
-        Id = id;
+        this.id = id;
         this.qualityId = qualityId;
         this.studentId = studentId;
         this.score = score;
@@ -42,7 +45,7 @@ public class QualityScore {
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public void setQualityId(Integer qualityId) {
@@ -58,7 +61,7 @@ public class QualityScore {
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public Integer getQualityId() {

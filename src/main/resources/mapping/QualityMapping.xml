@@ -31,4 +31,22 @@
     <update id="deleteQualityById">
         update quality set flag_deleted=1 where quality_id=#{id}
     </update>
+
+
+    <select id="getQuality" resultType="map">
+        SELECT quality_id qualityId,quality_name qualityName from quality where isdeleted=0
+    </select>
+    <select id="getQualityData" resultType="map">
+        select
+
+        <foreach collection="list" item="quality" separator=",">
+            q#{quality.qualityId}.quality#{quality.qualityId}
+        </foreach>
+        from
+        <foreach collection="list" item="quality" separator=",">
+            (SELECT student_id as s#{quality.qualityId},score as quality#{quality.qualityId}
+            FROM `quality_score` where quality_id = #{quality.qualityId} and period_no=#{periodNo} and student_id=#{studentId}) q#{quality.qualityId}
+        </foreach>
+
+    </select>
 </mapper>

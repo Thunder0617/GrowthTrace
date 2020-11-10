@@ -35,4 +35,13 @@ public class QualityServiceImpl extends ServiceImpl<IQualityMapper, Quality> imp
     public int deleteQualityById(Integer id) {
         return iQualityMapper.deleteQualityById(id);
     }
+    @Override
+    public List<Map<String, Object>> getQuality() {
+        return iQualityMapper.getQuality();
+    }
+
+    @Override
+    public List<Map<String, Object>> getQualityData(List<Map<String, Object>> quality,Integer studentId,Integer periodNo) {
+        return iQualityMapper.getQualityData(quality,studentId,periodNo);
+    }
 }

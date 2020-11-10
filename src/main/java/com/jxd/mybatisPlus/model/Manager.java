@@ -32,6 +32,11 @@ public class Manager {
         this.deptId = deptId;
     }
 
+    public Manager(String mName, Integer deptId) {
+        this.mName = mName;
+        this.deptId = deptId;
+    }
+
     public Manager(Integer id, String mName, Integer deptId, Integer isDeleted) {
         this.id = id;
         this.mName = mName;

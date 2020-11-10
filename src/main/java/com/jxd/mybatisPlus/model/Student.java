@@ -112,7 +112,7 @@ public class Student {
 //添加getter/setter方法
 
     public void setId(Integer id) {
-        id = id;
+        this.id = id;
     }
 
     public void setsName(String sName) {

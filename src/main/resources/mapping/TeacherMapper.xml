@@ -56,4 +56,9 @@
         <include refid="BaseSql"/>
         where flag_deleted = 0 limit #{startIndex},#{pageSize}
     </select>
+
+    <select id="getTeachCourse" resultType="map">
+        select co.* from course co INNER JOIN course_selected cs on co.course_id=cs.course_id
+        where cs.class_no=#{classId}
+    </select>
 </mapper>

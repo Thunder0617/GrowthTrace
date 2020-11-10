@@ -20,4 +20,93 @@
             s#{courseNo}.student_id
         </foreach>
     </select>
+
+    <insert id="addScores">
+        insert into course_score (student_id,score,course_id) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.studentId},#{item.score},#{item.courseId})
+        </foreach>
+    </insert>
+    <insert id="addScore">
+        insert into course_score (student_id,score,course_id) VALUES
+            (#{studentId},#{score},#{courseId})
+
+    </insert>
+    <select id="getStudentScore" resultType="map">
+        select
+        s.student_id studentId,s.student_name sName,s.sex,s.class_no classId,m.*
+        from
+        student s left join
+        (
+        select
+        mix1.*,mix3.overall_score as schoolScore
+        from
+        (
+        select s1.student_id as student_id1,
+        <foreach collection="list" item="courseNo" separator=",">
+            s#{courseNo}.score as score#{courseNo}
+        </foreach>
+        from
+        <foreach collection="list" item="courseNo"  separator=",">
+            (select student_id,score from course_score where course_id = #{courseNo}) s#{courseNo}
+        </foreach>
+        where
+        <foreach collection="list" item="courseNo"  separator="=">
+            s#{courseNo}.student_id
+        </foreach>
+        ) mix1,
+        (SELECT overall_score,student_id as student_id3 FROM evaluation_of_school ORDER BY student_id) mix3
+        <where>
+            mix1.student_id1=
+            mix3.student_id3
+        </where>
+        ) m
+        on
+        s.student_id =
+        m.student_id1
+        <where> s.isdeleted = 0 and s.class_no=#{classNo}
+            <if test="name!='all'">
+                and s.student_name like '%' #{name} '%'
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getStudentBysId" resultType="map">
+        select
+        s.student_id studentId,s.student_name sName,s.sex,s.class_no classId,m.*
+        from
+        student s left join
+        (
+        select
+        mix1.*,mix3.overall_score as schoolScore
+        from
+        (
+        select s1.student_id as student_id1,
+        <foreach collection="list" item="courseNo" separator=",">
+            s#{courseNo}.score as score#{courseNo}
+        </foreach>
+        from
+        <foreach collection="list" item="courseNo"  separator=",">
+            (select student_id,score from course_score where course_id = #{courseNo}) s#{courseNo}
+        </foreach>
+        where
+        <foreach collection="list" item="courseNo"  separator="=">
+            s#{courseNo}.student_id
+        </foreach>
+        ) mix1,
+        (SELECT overall_score,student_id as student_id3 FROM evaluation_of_school ORDER BY student_id) mix3
+        <where>
+            mix1.student_id1=
+            mix3.student_id3
+        </where>
+        ) m
+        on
+        s.student_id =
+        m.student_id1
+        <where> s.isdeleted = 0 and s.class_no=#{classNo}
+            <if test="studentId!=''">
+                and s.student_id=#{studentId}
+            </if>
+        </where>
+    </select>
 </mapper>

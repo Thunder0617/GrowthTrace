@@ -1,7 +1,9 @@
 package com.jxd.mybatisPlus.controller;
 
 import com.jxd.mybatisPlus.model.Dept;
+import com.jxd.mybatisPlus.model.Manager;
 import com.jxd.mybatisPlus.service.IDeptService;
+import com.jxd.mybatisPlus.service.IManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,8 @@ import java.util.Map;
 public class DeptController {
     @Autowired
     IDeptService iDeptService;
+    @Autowired
+    IManagerService iManagerService;
 
     @RequestMapping("/getAllDeptByPage/{curPage}/{pageSize}/{dname}")
     @ResponseBody
@@ -48,12 +52,15 @@ public class DeptController {
         }
         return msg;
     }
-    @RequestMapping("/addDept")
+    @RequestMapping("/addDept/{dName}/{mName}")
     @ResponseBody
-    public String addDept(@RequestBody Dept dept){
-        String msg = "添加部门失败！";
+    public String addDept(@PathVariable("dName")String dName,@PathVariable("mName")String mName){
+        String msg = "添加失败！";
+        Dept dept=new Dept(dName);
         if(iDeptService.save(dept)){
-            msg = "添加部门成功！";
+            Manager manager=new Manager(mName,dept.getId());
+            iManagerService.save(manager);
+            msg = "添加成功！";
         }
         return msg;
     }

@@ -15,55 +15,67 @@
     ORDER BY s.student_id
     </select>
     <select id="getStudentInfoListByClassNo2" resultType="map">
-    select
+        select
         s.student_id as id,s.student_name as sName,s.sex,s.native_place as address,s.graduate_school as school,s.class_no,m.*
         from
         student s left join
         (
-            select
-            mix1.*,mix2.*,mix3.overall_score as schoolScore
-            from
-            (
-            select s1.student_id as student_id1,
-            <foreach collection="list" item="courseNo" separator=",">
-                s#{courseNo}.score as score#{courseNo}
-            </foreach>
-            from
-            <foreach collection="list" item="courseNo"  separator=",">
-                (select student_id,score from course_score where course_id = #{courseNo}) s#{courseNo}
-            </foreach>
-            where
-            <foreach collection="list" item="courseNo"  separator="=">
-                s#{courseNo}.student_id
-            </foreach>
-            ) mix1,
-            (
-            select s1.student_id as student_id2,
-            <foreach collection="list1" item="period" separator=",">
-                s#{period}.overall_score  as deptScore#{period}
-            </foreach>
-            from
-            <foreach collection="list1" item="period"  separator=",">
-                (select student_id,overall_score from evaluation_of_dept where period_no = #{period}) s#{period}
-            </foreach>
-            where
-            <foreach collection="list1" item="period"  separator="=">
-                s#{period}.student_id
-            </foreach>
-            )mix2,
-            (SELECT overall_score,student_id as student_id3 FROM evaluation_of_school ORDER BY student_id) mix3
-            <where>
-                mix1.student_id1=
-                mix2.student_id2=
-                mix3.student_id3
-            </where>
+        select
+        mix4.*,mix3.overall_score as schoolScore
+        from(
+        select
+        mix1.*,mix2.*
+        from
+        (
+        select s0.student_id as student_id1,
+        <foreach collection="list" item="courseNo" index="index" separator=",">
+            s#{index}.score as score#{index}
+        </foreach>
+        from
+        <foreach collection="list" item="courseNo" index="index"  separator=",">
+            (select student_id,score from course_score where course_id = #{courseNo}) s#{index}
+        </foreach>
+        where
+        <foreach collection="list" item="courseNo" index="index" separator="and">
+            <if test="index!=0">
+                s#{index}.student_id = s0.student_id
+            </if>
+        </foreach>
+        ) mix1 left join
+        (
+        select m5.student_id student_id2,m5.d1 deptScore0,m5.d2 deptScore1,m5.d3 deptScore2,m6.d4 deptScore3 FROM
+        (select m3.student_id,m3.d1,m3.d2,m4.d3 from
+        (select m1.student_id,m1.d1,m2.d2 from
+        (select student_id,overall_score d1 from evaluation_of_dept where period_no = 0) m1 LEFT JOIN
+        (select student_id,overall_score d2 from evaluation_of_dept where period_no = 1) m2
+        on
+        m1.student_id = m2.student_id) m3
+        left JOIN
+        (select student_id,overall_score d3 from evaluation_of_dept where period_no = 2) m4
+        ON
+        m3.student_id = m4.student_id)m5
+        LEFT JOIN
+        (select student_id,overall_score d4 from evaluation_of_dept where period_no = 3)m6
+        on
+        m5.student_id = m6.student_id
+        )mix2
+        on
+        mix1.student_id1 =
+        mix2.student_id2
+
+        ) mix4
+        left join
+        (SELECT overall_score,student_id as student_id3 FROM evaluation_of_school ORDER BY student_id) mix3
+        on
+        mix4.student_id1=
+        mix3.student_id3
         ) m
         on
         s.student_id =
         m.student_id1
         <where> s.isdeleted = 0 and s.class_no=#{classNo}
             <if test="name!=''">
-               and s.student_name like '%' #{name} '%'
+                and s.student_name like '%' #{name} '%'
             </if>
         </where>
         limit #{startIndex},#{pageSize}
@@ -73,4 +85,103 @@
     </update>
 
 
+    <select id="getTeachStudent" resultType="map">
+        select s.student_id studentId,s.student_name sName,s.sex,
+        s.class_no classId,cs.course_id courseId,c.course_name courseName,cou.score
+        from  student s
+        LEFT JOIN course_selected cs ON s.class_no=cs.class_no
+        LEFT JOIN course c on c.course_id=cs.course_id
+        LEFT JOIN course_score cou on s.student_id = cou.student_id and cou.course_id=cs.course_id
+        <where>
+            s.class_no=#{classId} and cs.course_id=#{courseId} and s.isdeleted=0
+            <if test="sName !='all'">
+                and s.student_name LIKE concat('%',#{sName},'%')
+            </if>
+        </where>
+        order by s.student_id
+    </select>
+    <select id="getCountTeachStudent" resultType="java.lang.Integer">
+        select count(*)
+        from student s LEFT JOIN  course_selected cs
+        ON s.class_no=cs.class_no
+        INNER JOIN course c on c.course_id=cs.course_id
+        LEFT JOIN course_score cou on cou.course_id = cs.class_no
+        <where>
+            s.class_no=#{classId} and cs.course_id=#{courseId} and s.isdeleted=0
+            <if test="sName !='all'">
+                and s.student_name LIKE concat('%',#{sName},'%')
+            </if>
+        </where>
+    </select>
+    <select id="getQuality" resultType="map">
+        select s.student_name sName from student s LEFT JOIN evaluation_of_dept e
+        s.student_id=e.student_id where e.dept_no=1
+    </select>
+    <select id="getStudentCount">
+        select count(*) from student
+        <where>
+            class_no=#{classId}
+            <if test="sName !='all'">
+                and student_name LIKE concat('%',#{sName},'%')
+            </if>
+        </where>
+    </select>
+    <select id="getStudentInfo" resultType="map">
+        SELECT s.student_name sName,s.sex,s.birthday,s.native_place address,s.marital_status marry,s.phone,id_number cardid,s.folk,
+        s.graduate_school school,s.major,ed.evaluation_form_dept deptEvaluation,ed.overall_score overallScore,img_path img_path,remark notes,d.dept_name,ed.job
+        from student s
+        LEFT JOIN evaluation_of_dept ed on ed.student_id=s.student_id
+        LEFT JOIN dept d on d.dept_name=ed.dept_name
+        <where>
+            s.student_id=#{studentId} and s.isdeleted=0
+            <if test="count == 1">
+                and ed.period_no=#{periodNo}
+            </if>
+        </where>
+    </select>
+    <select id="getDeptStudentList" resultType="map">
+        select student_id studentId,student_name sName,sex from student
+        <where>
+            dept_no=#{deptNo} and isdeleted=0
+            <if test="sName != 'all'">
+                and  student_name like  concat('%',#{sName},'%')
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getDeptStudentCount" resultType="java.lang.Integer">
+        select count(*) from student
+        <where>
+            dept_no=#{deptNo} and isdeleted=0
+            <if test="sName != 'all'">
+                and  student_name like  concat('%',#{sName},'%')
+            </if>
+        </where>
+    </select>
+    <select id="getEvaluationCount" resultType="java.lang.Integer">
+        select count(*) from evaluation_of_dept where student_id=#{studentId}
+    </select>
+    <select id="getAllEmployeeByPageDeptNo" resultType="map">
+    select s.student_id eid,s.student_name ename,
+    (case when s.dept_no=#{deptNo} then '员工' end) job from student s
+    <where>
+        s.dept_no=#{deptNo}
+        <if test="eName!='all'">
+            and s.student_name like concat('%',#{eName},'%')
+        </if>
+    </where>
+    limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getAllEmployeeNumByLike" resultType="int">
+    select count(s.student_id) from student s
+    <where>
+        s.dept_no=#{deptNo}
+        <if test="eName!='all'">
+            and s.student_name like concat('%',#{eName},'%')
+        </if>
+    </where>
+    </select>
+    <update id="setStudentDeptNoNull">
+        update student set dept_no=null where student_id=#{eid}
+    </update>
 </mapper>

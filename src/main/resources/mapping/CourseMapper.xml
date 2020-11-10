@@ -10,7 +10,7 @@
     </select>
     <!--    查询班级所选课程课程-->
     <select id="getSelectedCourseByClassNo" resultType="Integer">
-        SELECT course_id FROM `course_selected` where class_no = 10 order by course_id;
+        SELECT course_id FROM `course_selected` where class_no = #{classNo} order by course_id;
     </select>
     <!--    查询班级所选课程名字-->
     <select id="getCourseNameByClassNo" resultType="String">
@@ -47,4 +47,34 @@
     <update id="deleteCourseById">
         update course set flag_deleted=1 where course_id=#{id}
     </update>
+
+    <select id="getTeachCourse" resultType="map">
+        select co.course_id courseId,co.course_name cName from course co INNER JOIN course_selected cs
+        on co.course_id=cs.course_id
+        <where>
+            cs.class_no=#{classId} and co.flag_deleted=0
+            <if test="cName !='all'">
+                and  co.course_name like concat('%',#{cName},'%')
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getCountTeachCourse" resultType="java.lang.Integer">
+        select count(*) from course co INNER JOIN course_selected cs
+        on co.course_id=cs.course_id
+        <where>
+            cs.class_no=#{classId} and co.flag_deleted=0
+            <if test="cName !='all'">
+                and  co.course_name like concat('%',#{cName},'%')
+            </if>
+        </where>
+    </select>
+    <select id="getCourses" resultType="java.lang.Integer">
+        select co.course_id courseId from course co INNER JOIN course_selected cs
+        on co.course_id=cs.course_id where cs.class_no=#{classId}
+    </select>
+    <select id="getLearnCourses" resultType="map">
+        select co.course_id courseId,co.course_name courseName from course co INNER JOIN course_selected cs
+        on co.course_id=cs.course_id where cs.class_no=#{classId} and co.flag_deleted=0
+    </select>
 </mapper>

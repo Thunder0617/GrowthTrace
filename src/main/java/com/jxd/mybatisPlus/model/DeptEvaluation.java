@@ -1,5 +1,6 @@
 package com.jxd.mybatisPlus.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -14,7 +15,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 //创建部门评价类
 @TableName(value = "evaluation_of_dept")
 public class DeptEvaluation {
-    @TableId(value = "id")
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer Id;//序号
     @TableField(value = "student_id")
     private Integer studentId;//学员id

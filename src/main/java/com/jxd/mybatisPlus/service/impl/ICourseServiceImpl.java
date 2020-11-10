@@ -49,4 +49,24 @@ public class ICourseServiceImpl extends ServiceImpl<ICourseMapper, Course> imple
     public int deleteCourseById(Integer id) {
         return iCourseMapper.deleteCourseById(id);
     }
+    //    根据班级获取所授课程
+    public List<Map<String, Object>> getTeachCourse(Integer startIndex,Integer pageSize,Integer classId,String cName) {
+        return iCourseMapper.getTeachCourse(startIndex,pageSize,classId,cName);
+    }
+    //获取总数
+    @Override
+    public Integer getCountTeachCourse(Integer classId, String cName) {
+        return iCourseMapper.getCountTeachCourse(classId,cName);
+    }
+
+    @Override
+    public List<Map<String, Object>> getLearnCourses(Integer classId) {
+        return iCourseMapper.getLearnCourses(classId);
+    }
+
+    @Override
+    public List<Integer> getCourses(Integer classNo) {
+        return iCourseMapper.getCourses(classNo);
+    }
+
 }

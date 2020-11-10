@@ -2,8 +2,12 @@ package com.jxd.mybatisPlus.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
+import com.jxd.mybatisPlus.model.CourseScore;
 import com.jxd.mybatisPlus.model.SchoolEvaluation;
+import com.jxd.mybatisPlus.model.SelectedCourse;
+import com.jxd.mybatisPlus.service.ICourseScoreService;
 import com.jxd.mybatisPlus.service.ISchoolEvaluationService;
+import com.jxd.mybatisPlus.service.ISelectedCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +28,10 @@ import java.util.Map;
 public class SchoolEvaluationController {
     @Autowired
     ISchoolEvaluationService iSchoolEvaluationService;
+    @Autowired
+    ICourseScoreService iCourseScoreService;
+    @Autowired
+    ISelectedCourseService iSelectedCourseService;
 
     @RequestMapping("/getHeaderById/{studentId}")
     @ResponseBody
@@ -81,5 +89,51 @@ public class SchoolEvaluationController {
         QueryWrapper<SchoolEvaluation> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("student_id",studentId);
         return iSchoolEvaluationService.getMap(queryWrapper);
+    }
+    /**
+     *@Author: zhaowentao
+     *@Description:确认能否写学校评价
+     *@Date: 16:36 2020/11/8
+     **/
+    @RequestMapping("/affirmEva/{stuId}/{classNo}")
+    @ResponseBody
+    public int AffirmEva(@PathVariable int stuId,@PathVariable int classNo){
+        int flag = 0;
+        QueryWrapper<SelectedCourse> queryWrapper1 = new QueryWrapper<>();
+        queryWrapper1.eq("class_no",classNo);
+        int classCount = iSelectedCourseService.count(queryWrapper1);
+        QueryWrapper<CourseScore> queryWrapper2 = new QueryWrapper<>();
+        queryWrapper2.eq("student_id",stuId);
+        int stuCount = iCourseScoreService.count(queryWrapper2);
+        if(classCount==stuCount){
+            flag = 1;
+        }
+        return flag;
+    }
+
+
+    /**
+     *@Author: zhaowentao
+     *@Description:计算学校总评价
+     *@Date: 16:09 2020/11/8
+     **/
+    @RequestMapping("/getAvgEvaByStuIdInSchool/{studentId}/{schoolEvaluation}/{classNo}/{teacherName}")
+    @ResponseBody
+    public float getAvgEva(@PathVariable Integer studentId,@PathVariable String schoolEvaluation,
+                           @PathVariable Integer classNo,@PathVariable String teacherName){
+        QueryWrapper<CourseScore> queryWrapper1 =new QueryWrapper<>();
+        queryWrapper1.eq("student_id",studentId);
+        List<CourseScore> courseScores= iCourseScoreService.list(queryWrapper1);
+        int sum = 0;
+        for (CourseScore c : courseScores) {
+            sum += c.getScore();
+        }
+        Integer avg = sum/courseScores.size();
+        SchoolEvaluation schoolEvaluation1 = new SchoolEvaluation(studentId,classNo,teacherName,avg,schoolEvaluation);
+        int flag = 0;
+        if(iSchoolEvaluationService.save(schoolEvaluation1)){
+            flag = 1;
+        }
+        return flag;
     }
 }

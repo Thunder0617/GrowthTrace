@@ -16,7 +16,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @TableName(value = "course")
 public class Course {
     @TableId(value = "course_id",type = IdType.AUTO)
-    private Integer Id;//课程序号
+    private Integer id;//课程序号
     @TableField(value = "course_name")
     private String cName;//课程名
     @TableField(value = "flag_deleted")
@@ -26,13 +26,17 @@ public class Course {
     }
 
     public Course(Integer id, String cName, Integer isDeleted) {
-        Id = id;
+        this.id = id ;
         this.cName = cName;
         this.isDeleted = isDeleted;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public void setcName(String cName) {
@@ -43,9 +47,7 @@ public class Course {
         this.isDeleted = isDeleted;
     }
 
-    public Integer getId() {
-        return Id;
-    }
+
 
     public String getcName() {
         return cName;

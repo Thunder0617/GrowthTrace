@@ -16,7 +16,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @TableName(value = "quality")
 public class Quality {
     @TableId(value = "quality_id",type = IdType.AUTO)
-    private Integer Id;//序号
+    private Integer id;//序号
     @TableField(value = "quality_name")
     private String qName;//品质名称
     @TableField(value = "isdeleted")
@@ -25,15 +25,15 @@ public class Quality {
     public Quality() {
     }
 
-    public Quality(Integer id, String qName, int isDeleted) {
-        Id = id;
+    public Quality(Integer id, String qName) {
+        this.id = id;
         this.qName = qName;
-        this.isDeleted = isDeleted;
     }
 
-    public Quality(Integer id, String qName) {
-        Id = id;
+    public Quality(Integer id, String qName, int isDeleted) {
+        this.id = id;
         this.qName = qName;
+        this.isDeleted = isDeleted;
     }
 
     public int getIsDeleted() {
@@ -45,7 +45,7 @@ public class Quality {
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public void setqName(String qName) {
@@ -53,7 +53,7 @@ public class Quality {
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public String getqName() {

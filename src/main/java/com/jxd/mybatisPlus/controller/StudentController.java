@@ -6,10 +6,7 @@ import com.jxd.mybatisPlus.service.IStudentService;
 import com.jxd.mybatisPlus.service.impl.IStudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -78,5 +75,68 @@ public class StudentController {
         queryWrapper.eq("student_id",studentId);
         Map<String, Object> map = iStudentService.getMap(queryWrapper);
         return map;
+    }
+    /*获取学生信息集合，实现分页*/
+    @RequestMapping("/getAllEmployeeByPageDeptNo/{curPage}/{pageSize}/{eName}/{deptNo}")
+    @ResponseBody
+    public List<Map<String,Object>> getAllEmployeeByPageDeptNo(@PathVariable("curPage")Integer curPage,@PathVariable("pageSize")Integer pageSize,@PathVariable("eName")String eName,@PathVariable("deptNo")Integer deptNo){
+        Integer startIndex = (curPage-1)*pageSize;
+        List<Map<String,Object>> employeeList=iStudentService.getAllEmployeeByPageDeptNo(eName,startIndex,pageSize,deptNo);
+        return employeeList;
+    }
+    /*获取所有学生信息集合，不分页*/
+    @RequestMapping("/getAllEmployeeNumByLike/{eName}/{deptNo}")
+    @ResponseBody
+    public Integer getAllEmployeeNumByLike(@PathVariable("eName")String eName,@PathVariable("deptNo")Integer deptNo){
+        int num=iStudentService.getAllEmployeeNumByLike(eName,deptNo);
+        return num;
+    }
+
+    /*给学生入职并分配部门*/
+    @RequestMapping("/setStudentDeptNoById")
+    @ResponseBody
+    public String setStudentDeptNoById(@RequestBody Student student){
+        String str="分配部门失败！";
+        if (iStudentService.updateById(student)){
+            str="成功给该学员分配了部门！";
+        }
+        return str;
+    }
+    /*修改学生信息*/
+    @RequestMapping("/updateStudentById")
+    @ResponseBody
+    public String updateStudentById( Student student){
+        String str="修改失败！";
+        if (iStudentService.updateById(student)){
+            str="修改成功！";
+        }
+        return str;
+    }
+    /*给学生更换部门*/
+    @RequestMapping("/changeStudentDeptNoById/{eid}/{ename}/{deptId}")
+    @ResponseBody
+    public String changeStudentDeptNoById(@PathVariable("eid")Integer eid,
+                                          @PathVariable("ename")String ename,
+                                          @PathVariable("deptId")Integer deptId){
+        Student student=new Student();
+        student.setId(eid);
+        student.setsName(ename);
+        student.setDeptNo(deptId);
+        String str="修改失败！";
+        if (iStudentService.updateById(student)){
+            str="修改成功！";
+        }
+        return str;
+    }
+    /*将学员从部门移除*/
+    @RequestMapping("/setStudentDeptNoNull/{eid}")
+    @ResponseBody
+    public String setStudentDeptNoNull(@PathVariable("eid")Integer eid){
+        String str="删除失败！";
+        int num=iStudentService.setStudentDeptNoNull(eid);
+        if (num!=0){
+            str="删除成功！";
+        }
+        return str;
     }
 }

@@ -19,4 +19,7 @@ public interface IQualityMapper extends BaseMapper<Quality> {
     List<Map<String,Object>> getAllQualityByPage(@Param("startIndex") Integer startIndex, @Param("pageSize") Integer pageSize, @Param("qname") String qname);
     List<Map<String,Object>> getAllQualityByLike(@Param("qname") String qname);
     int deleteQualityById(Integer id);
+    List<Map<String,Object>> getQuality();
+
+    List<Map<String,Object>> getQualityData(@Param("list") List<Map<String,Object>> quality,@Param("studentId") Integer studentId,@Param("periodNo") Integer periodNo);
 }

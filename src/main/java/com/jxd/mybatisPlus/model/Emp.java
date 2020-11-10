@@ -15,9 +15,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class Emp {
     @TableId(value = "name")//@TablefField注解的value对应数据库表的字段
 //    name 是属性名, tableid 声明表的主键
-
-
-
     private String name;
     private String password;
 

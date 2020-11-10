@@ -24,6 +24,7 @@ public class QualityController  {
     @Autowired
     IQualityService iQualityService;
 
+
     /**
      *@Author: zhaowentao
      *@Description:获取品质列表id+名称

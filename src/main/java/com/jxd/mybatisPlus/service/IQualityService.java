@@ -18,4 +18,6 @@ public interface IQualityService extends IService<Quality> {
     List<Map<String,Object>> getAllQualityByPage(Integer startIndex, Integer pageSize, String qname);
     List<Map<String,Object>> getAllQualityByLike(String qname);
     int deleteQualityById(Integer id);
+    List<Map<String,Object>> getQuality();
+    List<Map<String,Object>> getQualityData(List<Map<String,Object>> quality,Integer studentId,Integer period);
 }

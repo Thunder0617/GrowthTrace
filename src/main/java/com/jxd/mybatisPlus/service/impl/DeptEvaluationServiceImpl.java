@@ -26,5 +26,9 @@ public class DeptEvaluationServiceImpl extends ServiceImpl<IDeptEvaluationMapper
 
     }
 
+    @Override
+    public Integer getEvaluationCount(Integer sId) {
+        return iDeptEvaluationMapper.getEvaluationCount(sId);
+    }
 
 }

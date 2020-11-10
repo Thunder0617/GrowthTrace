@@ -61,7 +61,7 @@ public class CourseController {
         //创建空list存放待发送数据
         List<Map<String,Object>> mapList = new ArrayList<>();
         //设置名称标志位
-        int flag = 1;
+        int flag = 0;
         //遍历获取的label 数据
         //创建map对象，并将label与prop添加到map对象
         //label对应数据库里的课程名称

@@ -6,26 +6,29 @@
      接口的全限定名称，将来我们通过mapper接口的方法名来调用sql语句-->
 <mapper namespace="com.jxd.mybatisPlus.mapper.IDeptMapper">
     <sql id="BaseSql">
-      select * from dept
+      select * from(select d.*,m.manager_id,m.manager_name from dept d,manager m where
+      d.flag_deleted!=1 and d.dept_no=m.dept_no) dm
     </sql>
+    <!--获取·部门信息集合/分页-->
     <select id="getAllDeptByPage" resultType="map">
-        <include refid="BaseSql"></include>
-        <where>
-        flag_deleted!=1
-            <if test="dname!='all'">
-             and   dept_name like concat('%',#{dname},'%')
-            </if>
-        </where>
-        limit #{startIndex},#{pageSize}
+    <include refid="BaseSql"></include>
+    <where>
+        <if test="dname!='all'">
+            dm.dept_name like concat('%',#{dname},'%')
+            or dm.manager_name like concat('%',#{dname},'%')
+        </if>
+    </where>
+    limit #{startIndex},#{pageSize}
     </select>
+    <!--获取部门信息集合/不分页-->
     <select id="getAllDeptByLike" resultType="map">
-        <include refid="BaseSql"></include>
-        <where>
-        flag_deleted!=1
-            <if test="dname!='all'">
-              and  dept_name like concat('%',#{dname},'%')
-            </if>
-        </where>
+    <include refid="BaseSql"></include>
+    <where>
+        <if test="dname!='all'">
+            dm.dept_name like concat('%',#{dname},'%')
+            or dm.manager_name like concat('%',#{dname},'%')
+        </if>
+    </where>
     </select>
     <!--修改部门-->
     <update id="updateDeptById">

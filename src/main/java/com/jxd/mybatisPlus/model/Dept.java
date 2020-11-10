@@ -28,6 +28,9 @@ public class Dept {
         this.dName = dName;
     }
 
+    public Dept(String dName) {
+        this.dName = dName;
+    }
 
 
     public Integer getId() {

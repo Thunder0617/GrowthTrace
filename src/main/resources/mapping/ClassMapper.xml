@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jxd.mybatisPlus.mapper.IClassMapper">
+    <select id="getTeachClass" resultType="map">
+        select c.class_no classId  from  class c where c.teacher_id=#{teacherId} limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getCountTeachClass" resultType="java.lang.Integer">
+        select count(*)  from  class c where c.teacher_id=#{teacherId}
+    </select>
+</mapper>

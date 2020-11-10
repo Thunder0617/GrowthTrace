@@ -24,4 +24,11 @@ public interface ICourseMapper extends BaseMapper<Course> {
     List<Map<String,Object>> getAllCourseByLike(@Param("cname") String cname);
     int updateCourseById(Course course);
     int deleteCourseById(Integer id);
+    //    获取教师所带班级教授的课程
+    List<Map<String,Object>> getTeachCourse(@Param("startIndex") Integer startIndex,
+                                            @Param("pageSize") Integer pageSize,
+                                            @Param("classId") Integer classId,@Param("cName") String cName);
+    Integer getCountTeachCourse(@Param("classId") Integer classId,@Param("cName") String cName);
+    List<Map<String,Object>> getLearnCourses(@Param("classId") Integer classId);
+    List<Integer> getCourses(@Param("classNo") Integer classNo);
 }

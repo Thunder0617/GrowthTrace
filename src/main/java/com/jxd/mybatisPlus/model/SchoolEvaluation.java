@@ -1,5 +1,6 @@
 package com.jxd.mybatisPlus.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -14,8 +15,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @TableName(value = "evaluation_of_school")
 //创建学校评价类
 public class SchoolEvaluation {
-    @TableId(value = "id")
-    private Integer Id;//序号
+    @TableId(value = "id",type = IdType.AUTO)
+    private Integer id;//序号
     @TableField(value = "student_id")
     private Integer studentId;//学员id
     @TableField(value = "class_no")
@@ -30,8 +31,16 @@ public class SchoolEvaluation {
     public SchoolEvaluation() {
     }
 
+    public SchoolEvaluation(Integer studentId, Integer classid, String teacherName, Integer overallScore, String schoolEvaluation) {
+        this.studentId = studentId;
+        this.classid = classid;
+        this.teacherName = teacherName;
+        this.overallScore = overallScore;
+        this.schoolEvaluation = schoolEvaluation;
+    }
+
     public SchoolEvaluation(Integer id, Integer studentId, Integer classid, String teacherName, Integer overallScore, String schoolEvaluation) {
-        Id = id;
+        this.id = id;
         this.studentId = studentId;
         this.classid = classid;
         this.teacherName = teacherName;
@@ -40,7 +49,7 @@ public class SchoolEvaluation {
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public void setStudentId(Integer studentId) {
@@ -64,7 +73,7 @@ public class SchoolEvaluation {
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public Integer getStudentId() {

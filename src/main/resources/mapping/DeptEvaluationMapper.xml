@@ -6,4 +6,11 @@
         select q.quality_name,qs.score from quality q,quality_score qs where
         q.quality_id=qs.quality_id and qs.student_id=#{studentId} and qs.period_no=#{year}
     </select>
+
+    <select id="getDeptEvaluation" resultType="map">
+
+    </select>
+    <select id="getEvaluationCount" resultType="java.lang.Integer">
+        SELECT count(*) from evaluation_of_dept where student_id=#{studentId}
+    </select>
 </mapper>
